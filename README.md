@@ -12,3 +12,15 @@ pip install -r requirements.txt
    > line6: IP = '192.168.101.27'
 3. portを変更する
    > line7: PORT = 8881
+
+## QRコマンド一覧
+- t : 離陸
+- l : 着陸
+- w : 前へ
+- s : 後ろへ
+- a : 左へ
+- d : 右へ
+- r : 上へ
+- c : 下へ
+- e : 右回り
+- q : 左回り
