@@ -20,6 +20,7 @@ pip install -r requirements.txt
    - drone08_ip = '192.168.0.18'
    - drone09_ip = '192.168.0.19'
    - drone10_ip = '192.168.0.20'
+
 3. portを変更する
    > line7: PORT = 8881
    - drone01_port = 10001
