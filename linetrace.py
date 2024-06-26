@@ -30,9 +30,9 @@ def process_light_trace(img_bgr):
     bgr_image = small_image[250:359, 0:479]
     hsv_image = cv2.cvtColor(bgr_image, cv2.COLOR_BGR2HSV)
     # ハードコーディングされたトラックバーの値
-    h_min, h_max = 0, 180
-    s_min, s_max = 0, 255
-    v_min, v_max = 200, 255
+    h_min, h_max = 1, 10
+    s_min, s_max = 36, 255
+    v_min, v_max = 50, 200
     bin_image = cv2.inRange(hsv_image, (h_min, s_min, v_min), (h_max, s_max, v_max))
     kernel = np.ones((15, 15), np.uint8)
     dilation_image = cv2.dilate(bin_image, kernel, iterations=1)
@@ -54,13 +54,13 @@ def process_light_trace(img_bgr):
         # 中心からのズレに基づいてドローンを左右と前後に動かす
         dx = 1.0 * (240 - mx)  # 画面中心との差分
         dy = 1.0 * (180 - my)  # 画面中心との差分
-        a, b, c, d = 0, 20, 0, 0  # 初期値
+        a, b, c, d = 0, 30, 0, 0  # 初期値
         if abs(dx) > 50:
             d = -dx
-            d = 70 if d > 70 else d
-            d = -70 if d < -70 else d
+            d = 40 if d > 40 else d
+            d = -40 if d < -40 else d
         if abs(dy) > 50:
-            b = 20 if dy > 0 else -20
+            b = 30 if dy > 0 else -30
         if start_flag:
             command_queue.put((a, b, c, d))
     return masked_image
@@ -141,7 +141,6 @@ while True:
         break
     else:
         command_queue.put(chr(key))
-    time.sleep(0.5)
 # ------------------------------------
 
 # スレッドの終了待ち
