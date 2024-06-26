@@ -1,4 +1,4 @@
-import threading, queue, logging
+import threading, queue, logging, time
 import cv2
 from djitellopy import Tello, TelloSwarm
 import numpy as np
@@ -141,6 +141,7 @@ while True:
         break
     else:
         command_queue.put(chr(key))
+    time.sleep(0.5)
 # ------------------------------------
 
 # スレッドの終了待ち
