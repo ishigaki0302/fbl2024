@@ -22,6 +22,16 @@ pip install -r requirements.txt
    - drone10_ip = '192.168.0.20'
 3. portを変更する
    > line7: PORT = 8881
+   - drone01_port = 10001
+   - drone02_port  = 10002
+   - drone03_port  = 10003
+   - drone04_port  = 10004
+   - drone05_port  = 10005
+   - drone06_port  = 10006
+   - drone07_port  = 10007
+   - drone08_port  = 10008
+   - drone09_port  = 10009
+   - drone10_port  = 10010
 
 ## コマンド一覧
 qrプログラムでは，以下のコマンドでドローンを操作できます．
