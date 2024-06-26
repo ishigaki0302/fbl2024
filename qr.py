@@ -59,7 +59,11 @@ def tello_control(command_queue):
     while running:
         if not command_queue.empty():
             command = command_queue.get()
-            if command == 'w':
+            if command == "t":
+                tello.takeoff()
+            elif command == "l":
+                tello.land()
+            elif command == 'w':
                 tello.move_forward(20)
             elif command == 's':
                 tello.move_back(20)
@@ -77,10 +81,9 @@ def tello_control(command_queue):
                 tello.rotate_clockwise(20)
 # ------------------------------------
 
-# Telloストリームの開始と離陸
+# Telloストリームの開始
 # ------------------------------------
 tello.streamon()
-tello.takeoff()
 # ------------------------------------
 
 # 変数の定義
@@ -119,10 +122,9 @@ qr_thread.join()
 control_thread.join()
 # ------------------------------------
 
-# Telloのストリームを終了し、着陸
+# Telloのストリームを終了
 # ------------------------------------
 tello.streamoff()
-tello.land()
 telloswarm.end()
 cv2.destroyAllWindows()
 # ------------------------------------

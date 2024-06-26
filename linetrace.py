@@ -74,10 +74,9 @@ def control_drone(cx, frame_center):
         tello.move_forward(20)
 # ------------------------------------
 
-# Telloストリームの開始と離陸
+# Telloストリームの開始
 # ------------------------------------
 tello.streamon()
-tello.takeoff()
 # ------------------------------------
 
 # 変数の定義
@@ -109,6 +108,8 @@ while True:
     key = cv2.waitKey(1) & 0xFF
     if key == 27:  # ESCキーのコード
         break
+    elif key == ord('t'):
+        tello.takeoff()
 # ------------------------------------
 
 # スレッドの終了待ち
