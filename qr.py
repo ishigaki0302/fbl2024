@@ -3,8 +3,8 @@ import cv2
 from djitellopy import Tello, TelloSwarm
 import numpy as np
 
-IP = '192.168.101.27'
-PORT = 8881
+IP = '192.168.101.16'
+PORT = 8883
 
 # TelloSwarmの設定
 # ------------------------------------
