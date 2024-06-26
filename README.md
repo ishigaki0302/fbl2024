@@ -13,7 +13,10 @@ pip install -r requirements.txt
 3. portを変更する
    > line7: PORT = 8881
 
-## QRコマンド一覧
+## コマンド一覧
+qrプログラムでは，以下のコマンドでドローンを操作できます．
+line traceプログラムでは，終了コマンドと離陸コマンドのみ使用可能です．
+- ESC : 終了
 - t : 離陸
 - l : 着陸
 - w : 前へ
