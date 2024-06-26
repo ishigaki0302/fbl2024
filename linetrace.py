@@ -3,9 +3,12 @@ import cv2
 from djitellopy import Tello, TelloSwarm
 import numpy as np
 
+IP = '192.168.101.27'
+PORT = 8881
+
 # TelloSwarmの設定
 # ------------------------------------
-telloswarm = TelloSwarm.fromIps(['192.168.101.27'])
+telloswarm = TelloSwarm.fromIps([IP])
 tello = telloswarm.tellos[0]
 tello.LOGGER.setLevel(logging.ERROR)
 tello.connect()
@@ -14,7 +17,7 @@ print(f'Tello Battery : {tello.get_battery()}')
 
 # ビデオ設定
 # ------------------------------------
-tello.change_vs_udp(8881)
+tello.change_vs_udp(PORT)
 tello.set_video_resolution(Tello.RESOLUTION_480P)
 tello.set_video_bitrate(Tello.BITRATE_1MBPS)
 # ------------------------------------
