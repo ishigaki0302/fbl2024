@@ -6,3 +6,7 @@
 ```
 pip install -r requirements.txt
 ```
+
+## プログラムを動かす前に
+1. IPを変更する
+3. portを変更する
