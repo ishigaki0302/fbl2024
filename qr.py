@@ -4,7 +4,7 @@ from djitellopy import Tello, TelloSwarm
 import numpy as np
 
 IP = '192.168.0.12'
-PORT = 8887
+PORT = 10002
 
 # TelloSwarmの設定
 # ------------------------------------
