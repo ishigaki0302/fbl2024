@@ -58,7 +58,7 @@ def process_light_trace(img_bgr):
         my = int(center[max_index][1])
         cv2.rectangle(masked_image, (x, y), (x + w, y + h), (255, 0, 255))
         cv2.putText(masked_image, "%d" % stats[max_index][4], (x, y + h + 15), cv2.FONT_HERSHEY_PLAIN, 1, (255, 255, 0))
-        # 中心からのズレに基づいてドローンを左右と前後に動かす
+        # dx と dy は、画面中心と検出したオブジェクトの中心との差分を計算することで，ライントレースを実現する
         dx = 1.0 * (240 - mx)  # 画面中心との差分
         dy = 1.0 * (180 - my)  # 画面中心との差分
         a, b, c, d = 0, FORWARD_SPEED, 0, 0  # 初期値
