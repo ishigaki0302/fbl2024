@@ -10,6 +10,9 @@ H_MIN, H_MAX = 1, 10
 S_MIN, S_MAX = 36, 255
 V_MIN, V_MAX = 50, 200
 
+FORWARD_SPEED = 30
+ROTATION_SPEED = 40
+
 # TelloSwarmの設定
 # ------------------------------------
 telloswarm = TelloSwarm.fromIps([IP])
@@ -58,13 +61,13 @@ def process_light_trace(img_bgr):
         # 中心からのズレに基づいてドローンを左右と前後に動かす
         dx = 1.0 * (240 - mx)  # 画面中心との差分
         dy = 1.0 * (180 - my)  # 画面中心との差分
-        a, b, c, d = 0, 30, 0, 0  # 初期値
+        a, b, c, d = 0, FORWARD_SPEED, 0, 0  # 初期値
         if abs(dx) > 50:
             d = -dx
-            d = 40 if d > 40 else d
-            d = -40 if d < -40 else d
+            d = ROTATION_SPEED if d > ROTATION_SPEED else d
+            d = (ROTATION_SPEED * -1) if d < (ROTATION_SPEED * -1) else d
         if abs(dy) > 50:
-            b = 30 if dy > 0 else -30
+            b = FORWARD_SPEED if dy > 0 else (FORWARD_SPEED * -1)
         if start_flag:
             command_queue.put((a, b, c, d))
     return masked_image
@@ -101,6 +104,10 @@ def tello_control(command_queue):
                 elif command == 'q':
                     tello.rotate_clockwise(20)
             else:
+                # a: 左右の動き（右が正、左が負）
+                # b: 前後の動き（前が正、後が負）
+                # c: 上下の動き（上が正、下が負）
+                # d: 回転の動き（時計回りが正、反時計回りが負）
                 a, b, c, d = command
                 tello.send_rc_control(int(a), int(b), int(c), int(d))
 # ------------------------------------
