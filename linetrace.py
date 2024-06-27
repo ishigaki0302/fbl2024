@@ -6,6 +6,10 @@ import numpy as np
 IP = '192.168.0.12'
 PORT = 10002
 
+H_MIN, H_MAX = 1, 10
+S_MIN, S_MAX = 36, 255
+V_MIN, V_MAX = 50, 200
+
 # TelloSwarmの設定
 # ------------------------------------
 telloswarm = TelloSwarm.fromIps([IP])
@@ -30,9 +34,9 @@ def process_light_trace(img_bgr):
     bgr_image = small_image[250:359, 0:479]
     hsv_image = cv2.cvtColor(bgr_image, cv2.COLOR_BGR2HSV)
     # ハードコーディングされたトラックバーの値
-    h_min, h_max = 1, 10
-    s_min, s_max = 36, 255
-    v_min, v_max = 50, 200
+    h_min, h_max = H_MIN, H_MAX
+    s_min, s_max = S_MIN, S_MAX
+    v_min, v_max = V_MIN, V_MAX
     bin_image = cv2.inRange(hsv_image, (h_min, s_min, v_min), (h_max, s_max, v_max))
     kernel = np.ones((15, 15), np.uint8)
     dilation_image = cv2.dilate(bin_image, kernel, iterations=1)
