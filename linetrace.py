@@ -11,7 +11,7 @@ S_MIN, S_MAX = 36, 255
 V_MIN, V_MAX = 50, 200
 
 FORWARD_SPEED = 30
-ROTATION_SPEED = 40
+MAX_ROTATION_SPEED = 40
 
 # TelloSwarmの設定
 # ------------------------------------
@@ -64,8 +64,8 @@ def process_light_trace(img_bgr):
         a, b, c, d = 0, FORWARD_SPEED, 0, 0  # 初期値
         if abs(dx) > 50:
             d = -dx
-            d = ROTATION_SPEED if d > ROTATION_SPEED else d
-            d = (ROTATION_SPEED * -1) if d < (ROTATION_SPEED * -1) else d
+            d = MAX_ROTATION_SPEED if d > MAX_ROTATION_SPEED else d
+            d = (MAX_ROTATION_SPEED * -1) if d < (MAX_ROTATION_SPEED * -1) else d
         if abs(dy) > 50:
             b = FORWARD_SPEED if dy > 0 else (FORWARD_SPEED * -1)
         if start_flag:
