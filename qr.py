@@ -79,9 +79,9 @@ def tello_control(command_queue):
                 tello.move_up(Z_SPEED)
             elif command == 'c':
                 tello.move_down(Z_SPEED)
-            elif command == 'e':
-                tello.rotate_counter_clockwise(ROTATION_SPEED)
             elif command == 'q':
+                tello.rotate_counter_clockwise(ROTATION_SPEED)
+            elif command == 'e':
                 tello.rotate_clockwise(ROTATION_SPEED)
 # ------------------------------------
 

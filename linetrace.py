@@ -99,9 +99,9 @@ def tello_control(command_queue):
                     tello.move_up(20)
                 elif command == 'c':
                     tello.move_down(20)
-                elif command == 'e':
-                    tello.rotate_counter_clockwise(20)
                 elif command == 'q':
+                    tello.rotate_counter_clockwise(20)
+                elif command == 'e':
                     tello.rotate_clockwise(20)
             else:
                 # a: 左右の動き（右が正、左が負）
