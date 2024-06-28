@@ -6,6 +6,10 @@ import numpy as np
 IP = '192.168.0.12'
 PORT = 10002
 
+XY_SPEED = 20
+Z_SPEED = 20
+ROTATION_SPEED = 20
+
 # TelloSwarmの設定
 # ------------------------------------
 telloswarm = TelloSwarm.fromIps([IP])
@@ -64,21 +68,21 @@ def tello_control(command_queue):
             elif command == "l":
                 tello.land()
             elif command == 'w':
-                tello.move_forward(20)
+                tello.move_forward(XY_SPEED)
             elif command == 's':
-                tello.move_back(20)
+                tello.move_back(XY_SPEED)
             elif command == 'a':
-                tello.move_left(20)
+                tello.move_left(XY_SPEED)
             elif command == 'd':
-                tello.move_right(20)
+                tello.move_right(XY_SPEED)
             elif command == 'r':
-                tello.move_up(20)
+                tello.move_up(Z_SPEED)
             elif command == 'c':
-                tello.move_down(20)
+                tello.move_down(Z_SPEED)
             elif command == 'e':
-                tello.rotate_counter_clockwise(20)
+                tello.rotate_counter_clockwise(ROTATION_SPEED)
             elif command == 'q':
-                tello.rotate_clockwise(20)
+                tello.rotate_clockwise(ROTATION_SPEED)
 # ------------------------------------
 
 # Telloストリームの開始
