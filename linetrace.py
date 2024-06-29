@@ -3,15 +3,15 @@ import cv2
 from djitellopy import Tello, TelloSwarm
 import numpy as np
 
-IP = '192.168.0.12'
-PORT = 10002
+IP = '192.168.0.16'
+PORT = 10006
 
-H_MIN, H_MAX = 1, 10
-S_MIN, S_MAX = 36, 255
-V_MIN, V_MAX = 50, 200
+H_MIN, H_MAX = 1, 15
+S_MIN, S_MAX = 70, 255
+V_MIN, V_MAX = 84, 176
 
-FORWARD_SPEED = 30
-MAX_ROTATION_SPEED = 40
+FORWARD_SPEED = 25
+MAX_ROTATION_SPEED = 70
 
 # TelloSwarmの設定
 # ------------------------------------
@@ -58,16 +58,13 @@ def process_light_trace(img_bgr):
         my = int(center[max_index][1])
         cv2.rectangle(masked_image, (x, y), (x + w, y + h), (255, 0, 255))
         cv2.putText(masked_image, "%d" % stats[max_index][4], (x, y + h + 15), cv2.FONT_HERSHEY_PLAIN, 1, (255, 255, 0))
-        # dx と dy は、画面中心と検出したオブジェクトの中心との差分を計算することで，ライントレースを実現する
-        dx = 1.0 * (240 - mx)  # 画面中心との差分
-        dy = 1.0 * (180 - my)  # 画面中心との差分
-        a, b, c, d = 0, FORWARD_SPEED, 0, 0  # 初期値
-        if abs(dx) > 50:
-            d = -dx
-            d = MAX_ROTATION_SPEED if d > MAX_ROTATION_SPEED else d
-            d = (MAX_ROTATION_SPEED * -1) if d < (MAX_ROTATION_SPEED * -1) else d
-        if abs(dy) > 50:
-            b = FORWARD_SPEED if dy > 0 else (FORWARD_SPEED * -1)
+        dx = 1.0 * (240 - mx) # 画面中心との差分
+        a, b, c, d = 0, FORWARD_SPEED, 0, 0 # 初期値
+        d = 0.0 if abs(dx) < 50.0 else dx # 旋回方向の不感帯を設定
+        d = -d
+        # 旋回方向のソフトウェアリミッタ
+        d =  MAX_ROTATION_SPEED if d >  MAX_ROTATION_SPEED else d
+        d = -MAX_ROTATION_SPEED if d < -MAX_ROTATION_SPEED else d
         if start_flag:
             command_queue.put((a, b, c, d))
     return masked_image
@@ -130,11 +127,18 @@ start_flag = False
 # ------------------------------------
 def video_stream():
     global current_frame
+    frame_count = 0  # フレームカウンター
+    process_interval = 100  # 処理を行う間隔（例: 5フレームごと）
     while running:
         frame = tello.get_frame_read().frame
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        frame_count += 1
         with frame_lock:
-            current_frame = process_light_trace(frame)
+            if frame_count % process_interval == 0:
+                current_frame = process_light_trace(frame)
+            else:
+                current_frame = frame
+        
 stream_thread = threading.Thread(target=video_stream)
 control_thread = threading.Thread(target=tello_control, args=(command_queue,))
 stream_thread.start()

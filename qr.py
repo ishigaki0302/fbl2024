@@ -3,8 +3,8 @@ import cv2
 from djitellopy import Tello, TelloSwarm
 import numpy as np
 
-IP = '192.168.0.12'
-PORT = 10002
+IP = '192.168.0.16'
+PORT = 10006
 
 XY_SPEED = 20
 Z_SPEED = 20
