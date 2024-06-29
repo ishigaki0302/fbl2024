@@ -136,8 +136,6 @@ def video_stream():
         with frame_lock:
             if frame_count % process_interval == 0:
                 current_frame = process_light_trace(frame)
-            else:
-                current_frame = frame
         
 stream_thread = threading.Thread(target=video_stream)
 control_thread = threading.Thread(target=tello_control, args=(command_queue,))

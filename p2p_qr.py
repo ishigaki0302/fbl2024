@@ -1,10 +1,7 @@
 import threading, queue, logging, time
 import cv2
-from djitellopy import Tello, TelloSwarm
+from djitellopy import Tello
 import numpy as np
-
-IP = '192.168.0.11'
-PORT = 10001
 
 XY_SPEED = 20
 Z_SPEED = 20
@@ -12,18 +9,9 @@ ROTATION_SPEED = 20
 
 # TelloSwarmの設定
 # ------------------------------------
-telloswarm = TelloSwarm.fromIps([IP])
-tello = telloswarm.tellos[0]
-tello.LOGGER.setLevel(logging.ERROR)
+tello = Tello()
 tello.connect()
 print(f'Tello Battery : {tello.get_battery()}')
-# ------------------------------------
-
-# ビデオ設定
-# ------------------------------------
-tello.change_vs_udp(PORT)
-tello.set_video_resolution(Tello.RESOLUTION_480P)
-tello.set_video_bitrate(Tello.BITRATE_1MBPS)
 # ------------------------------------
 
 # QRコードの認識と表示
@@ -129,6 +117,5 @@ control_thread.join()
 # Telloのストリームを終了
 # ------------------------------------
 tello.streamoff()
-telloswarm.end()
 cv2.destroyAllWindows()
 # ------------------------------------
