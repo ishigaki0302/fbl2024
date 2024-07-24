@@ -270,8 +270,8 @@ try:
         # (Y)OpenCVウィンドウでキー入力を1ms待つ
         key = cv2.waitKey(1)
 
-        # qキーで終了
-        if key == ord('q'):
+        # escキーで終了
+        if key == 27:
             break
         # wキーで前進
         elif key == ord('w'):
@@ -289,28 +289,28 @@ try:
         elif key == ord('d'):
             right()
             command_text = "Right"
-        # jキーで離陸
-        elif key == ord('j'):
+        # tキーで離陸
+        elif key == ord('t'):
             takeoff()
             command_text = "Take off"
-        # kキーで着陸
-        elif key == ord('k'):
+        # lキーで着陸
+        elif key == ord('l'):
             land()
             command_text = "Land"
-        # hキーで上昇
-        elif key == ord('h'):
+        # rキーで上昇
+        elif key == ord('r'):
             up()
             command_text = "Up"
-        # lキーで下降
-        elif key == ord('l'):
+        # cキーで下降
+        elif key == ord('c'):
             down()
             command_text = "Down"
-        # uキーで左回りに回転
-        elif key == ord('u'):
+        # qキーで左回りに回転
+        elif key == ord('q'):
             ccw()
             command_text = "Ccw"
-        # iキーで右回りに回転
-        elif key == ord('i'):
+        # eキーで右回りに回転
+        elif key == ord('e'):
             cw()
             command_text = "Cw"
         # 追跡モードをON

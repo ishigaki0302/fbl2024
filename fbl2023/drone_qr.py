@@ -240,47 +240,47 @@ while True:
     # キー入力を取得
     key = cv2.waitKey(1)
 
-    # qキーで終了
-    if key == ord('q'):
+    # escキーで終了
+    if key == 27:
         break
-    # ↑キーで前進
+    # wキーで前進
     elif key == ord('w'):
         forward()
         command_text = "Forward"
-    # ↓キーで後進
+    # sキーで後進
     elif key == ord('s'):
         back()
         command_text = "Back"
-    # ←キーで左進
+    # aキーで左進
     elif key == ord('a'):
         left()
         command_text = "Left"
-    # →キーで右進
+    # dキーで右進
     elif key == ord('d'):
         right()
         command_text = "Right"
-    # jキーで離陸
-    elif key == ord('j'):
+    # tキーで離陸
+    elif key == ord('t'):
         takeoff()
         command_text = "Take off"
-    # kキーで着陸
-    elif key == ord('k'):
+    # lキーで着陸
+    elif key == ord('l'):
         land()
         command_text = "Land"
-    # hキーで上昇
-    elif key == ord('h'):
+    # rキーで上昇
+    elif key == ord('r'):
         up()
         command_text = "Up"
-    # lキーで下降
-    elif key == ord('l'):
+    # cキーで下降
+    elif key == ord('c'):
         down()
         command_text = "Down"
-    # uキーで左回りに回転
-    elif key == ord('u'):
+    # qキーで左回りに回転
+    elif key == ord('q'):
         ccw()
         command_text = "Ccw"
-    # iキーで右回りに回転
-    elif key == ord('i'):
+    # eキーで右回りに回転
+    elif key == ord('e'):
         cw()
         command_text = "Cw"
     # mキーで速度変更
