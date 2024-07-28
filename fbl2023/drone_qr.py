@@ -66,25 +66,25 @@ def down():
             sent = sock.sendto('down 20'.encode(encoding="utf-8"), TELLO_ADDRESS)
         except:
             pass
-# 前に進む(20cm)
+# 前に進む(0cm)
 def forward():
         try:
             sent = sock.sendto('forward 0'.encode(encoding="utf-8"), TELLO_ADDRESS)
         except:
             pass
-# 後に進む(20cm)
+# 後に進む(0cm)
 def back():
         try:
             sent = sock.sendto('back 0'.encode(encoding="utf-8"), TELLO_ADDRESS)
         except:
             pass
-# 右に進む(20cm)
+# 右に進む(0cm)
 def right():
         try:
             sent = sock.sendto('right 0'.encode(encoding="utf-8"), TELLO_ADDRESS)
         except:
             pass
-# 左に進む(20cm)
+# 左に進む(0cm)
 def left():
         try:
             sent = sock.sendto('left 0'.encode(encoding="utf-8"), TELLO_ADDRESS)
