@@ -184,7 +184,7 @@ cv2.createTrackbar("S_max", window_title, S_MAX, 255, on_trackbar)
 cv2.createTrackbar("V_min", window_title, V_MIN, 255, on_trackbar)
 cv2.createTrackbar("V_max", window_title, V_MAX, 255, on_trackbar)
 a = b = c = d = 0   # rcコマンドの初期値を入力
-b = 0              # 前進の値を40に設定
+b = 0              # 前進の値を0に設定
 flag = 0
 
 # 繰り返し実行
