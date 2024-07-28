@@ -10,7 +10,6 @@ pip install -r requirements.txt
 ```
 
 ## qr.py
-カメラにQRコードを写すとコマンドライン上に内容が表示されます．
 
 コマンド一覧
 - ESC : 終了
