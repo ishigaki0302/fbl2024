@@ -9,7 +9,7 @@ This program is designed for the Advanced FBL in System Design Engineering cours
 pip install -r requirements.txt
 ```
 
-## qr.py
+## drone_qr.py
 
 コマンド一覧
 - ESC : 終了
@@ -52,7 +52,7 @@ def left():
             pass
 ```
 
-## line_trace.py
+## drone_linetrace.py
 コマンド一覧
 - ESC : 終了
 - 1 : ライントレース開始
